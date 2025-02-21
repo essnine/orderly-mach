@@ -2,7 +2,7 @@
   :name "orderly-mach"
   :description ```website stuff ```
   :version "0.0.0"
-  :dependencies ["https://github.com/janet-lang/circlet.git" "https://github.com/pyrmont/markable"])
+  :dependencies ["https://github.com/janet-lang/circlet.git" "https://github.com/pyrmont/markable" "https://github.com/joy-framework/http"])
 
 (declare-source
   :prefix "orderly-mach"
