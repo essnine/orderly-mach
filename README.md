@@ -7,4 +7,11 @@ At the moment, I want this program to emit a binary containing a sqlite db with 
   - a binary for the posts server
   - a sqlite3 db containing the posts and some metadata
 - the subsequent steps in the action take the binary and pass it to flyio or something
-- flyio servers from the binary
+- flyio or whatever serves the posts from the binary
+
+The reasons for working it out like this is entirely personal and one I am not going to second-guess for the purposes of this project - I hate seeing apps that should be self-contained programs turned into archives containing thousands of files for no purpose - I don't want configuration to look the same as the contents - I want the contents to sit within the fat binary first and then mayb be accessible and extensible while they're there, since ideally they'll be read or altered more often than reused in some way.
+
+I also have this belief I want to run with for now: programs should be packaged into units when they are built, and then tested to make sure that the behavior lines up with expectations we have from the source code. This makes a build step a discrete transition from code to product, reducing the possibility pf using "hacks" of any sort to mitigate runtime issues, and it makes the programs truly distributable.
+
+(I'll add more as hopefully my thoughts start to become more coherent with time and implementation.)
+
