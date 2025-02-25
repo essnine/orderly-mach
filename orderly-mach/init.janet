@@ -2,7 +2,6 @@
 (import http) # http client lib from joy framework
 (import markable)
 (import path)
-(import musty)
 
 
 (defn get-filename [filepath]
@@ -15,9 +14,7 @@
     (set trimmed-filename filename)
     )
   (def cleaned-filename (peg/replace-all ':W+ "-" trimmed-filename))
-  (pp cleaned-filename)
-  (def stub (string/slice (describe (hash cleaned-filename)) 0 -8 ))
-  (def filename-url-path (string "/" (string/join @[cleaned-filename stub] "")))
+  (def filename-url-path (string "/" cleaned-filename))
 
   filename-url-path)
 
@@ -29,7 +26,7 @@
     (put html-table (pair 0) 
     {
           :headers {:content-type "text/html"} 
-          :body (musty/render base-html-template (markable/markdown->html (pair 1)))
+          :body (string/replace "{{body_content}}" (markable/markdown->html (pair 1)) base-html-template )
         }
     )
     )
@@ -62,6 +59,7 @@
 (defn prepare-pages [posts-path]
   (def filetext-table (load-files posts-path))
   (def filehtml-table (convert-mdn-to-html filetext-table))
+  (put filehtml-table :default {:kind :static :root "."})
   (put filehtml-table "/favicon.ico" {:kind :file :file "./orderly-mach/templates/favicon.png" :mime "image/png"})
   (put filehtml-table "/8BITWONDERNominal.woff2" {:kind :file :file "./orderly-mach/templates/8BITWONDERNominal.woff2" :mime "application/octet-stream"})
   (pp (keys filehtml-table))
