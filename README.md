@@ -26,4 +26,7 @@ So far in, here's what's working and what's not. This is not an exhaustive list 
 - [ ] Images or links in markdown are handled
 - [ ] Loads everything into sqlite
 - [ ] Emits binaries containing full site
+- [ ] Composing HTML using the html module in the stdlib instead of the custom template
+  - [ ] Compositional CSS and interactive elements
+  - [ ] or HTMX
 - [ ] ??? (Something will occur to me in a dream)

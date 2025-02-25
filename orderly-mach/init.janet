@@ -9,9 +9,12 @@
 
 (defn trim-file-name-for-path [filename]
   (var trimmed-filename "")
+  (def filename-no-ext (string/slice filename 0 (- -1 (length (path/ext filename)))))
   (if (< 32 (length filename))
-    (set trimmed-filename (string/slice filename 0 -32))
-    (set trimmed-filename filename)
+    (do 
+      (set trimmed-filename (string/slice filename-no-ext 0 -32))
+    )
+    (set trimmed-filename filename-no-ext)
     )
   (def cleaned-filename (peg/replace-all ':W+ "-" trimmed-filename))
   (def filename-url-path (string "/" cleaned-filename))
