@@ -22,6 +22,7 @@ So far in, here's what's working and what's not. This is not an exhaustive list 
 - [-] Page styling works as expected
   - [x] Markdown converted to HTML and embedded looks OK
   - [ ] Can point the app to a custom HTML template
+  - [ ] Static content picked up instead of hardcoded (this should be a quick circlet thing but I'll do it later)
   - [ ] ??? (Something will occur to me in a dream)
 - [ ] Images or links in markdown are handled
 - [ ] Loads everything into sqlite
