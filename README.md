@@ -15,3 +15,15 @@ I also have this belief I want to run with for now: programs should be packaged 
 
 (I'll add more as hopefully my thoughts start to become more coherent with time and implementation.)
 
+So far in, here's what's working and what's not. This is not an exhaustive list but it covers what I want to have done:
+- [x] I can load pages
+- [x] Pages are populated by content from markdown pages
+- [x] favicon and font resources are working
+- [-] Page styling works as expected
+  - [x] Markdown converted to HTML and embedded looks OK
+  - [ ] Can point the app to a custom HTML template
+  - [ ] ??? (Something will occur to me in a dream)
+- [ ] Images or links in markdown are handled
+- [ ] Loads everything into sqlite
+- [ ] Emits binaries containing full site
+- [ ] ??? (Something will occur to me in a dream)
