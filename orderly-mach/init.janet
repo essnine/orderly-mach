@@ -2,6 +2,7 @@
 (import http) # http client lib from joy framework
 (import markable)
 (import path)
+(import musty)
 
 
 (defn get-filename [filepath]
@@ -10,48 +11,63 @@
 (defn trim-file-name-for-path [filename]
   (var trimmed-filename "")
   (if (< 32 (length filename))
-    (do
-      (set
-        (trimmed-filename (string/slice filename 0 -32))
-        (trimmed-filename filename))))
+    (set trimmed-filename (string/slice filename 0 -32))
+    (set trimmed-filename filename)
+    )
   (def cleaned-filename (peg/replace-all ':W+ "-" trimmed-filename))
-  (def stub (string/slice 0 -8 (hash cleaned-filename)))
-  (def filename-url-path (string/join @[cleaned-filename stub] "-"))
+  (pp cleaned-filename)
+  (def stub (string/slice (describe (hash cleaned-filename)) 0 -8 ))
+  (def filename-url-path (string "/" (string/join @[cleaned-filename stub] "")))
 
   filename-url-path)
 
 (defn convert-mdn-to-html [mdn-table]
+  (def base-html-template (string (slurp "./orderly-mach/templates/home.html")))
   (var html-table @{})
   (loop [pair :in (pairs mdn-table)]
-    (put html-table (pair 0) (markable/markdown->html (pair 1))))
+    (pp pair)
+    (put html-table (pair 0) 
+    {
+          :headers {:content-type "text/html"} 
+          :body (musty/render base-html-template (markable/markdown->html (pair 1)))
+        }
+    )
+    )
   html-table)
 
 (defn expand-tilde [path]
+  (var fixed-path path)
   (if (string/has-prefix? "~/" path)
-    (string (os/getenv "HOME") (string/slice path 1))
-    path))
+      (set fixed-path (string/join @((os/getenv "HOME") (string/slice path 1)) ""))
+    )
+  fixed-path)
 
 (defn load-files
   "Load file text into memory" [posts-path]
-  (var files '{})
-  (def files-in-path (os/dir (expand-tilde posts-path)))
-  (print files-in-path)
+  (var files @{})
+  (def expanded-posts-path (expand-tilde posts-path))
+  (def files-in-path (os/dir expanded-posts-path))
+  (pp files-in-path)
   (loop [filepath :in files-in-path]
     (print "processing filepath: " filepath)
-    (if (= (path/ext filepath) "md")
+    (if (= (path/ext filepath) ".md")
       (do (var filename (get-filename filepath))
-        (put files (trim-file-name-for-path filename) (slurp filepath))
-        (print "Skipping file: " filepath))))
+        (def expanded-filepath (string/join @[expanded-posts-path filepath] "/"))
+        (put files (trim-file-name-for-path filename) (string (slurp expanded-filepath) ) ))
+        (print "Skipping file: " filepath)
+      ))
 
   files)
 
 (defn prepare-pages [posts-path]
   (def filetext-table (load-files posts-path))
   (def filehtml-table (convert-mdn-to-html filetext-table))
-  (print (keys filehtml-table))
+  (put filehtml-table "/favicon.ico" {:kind :file :file "./orderly-mach/templates/favicon.png" :mime "image/png"})
+  (put filehtml-table "/8BITWONDERNominal.woff2" {:kind :file :file "./orderly-mach/templates/8BITWONDERNominal.woff2" :mime "application/octet-stream"})
+  (pp (keys filehtml-table))
   filehtml-table)
 
-(def posts-path (get (os/environ) "POSTSPATH" "~/posts"))
+(var posts-path (get (os/environ) "POSTSPATH" "~/posts"))
 
 (circlet/server
   (->
