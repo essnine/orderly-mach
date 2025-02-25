@@ -19,7 +19,7 @@ So far in, here's what's working and what's not. This is not an exhaustive list 
 - [x] I can load pages
 - [x] Pages are populated by content from markdown pages
 - [x] favicon and font resources are working
-- [-] Page styling works as expected
+- [ ] Page styling works as expected
   - [x] Markdown converted to HTML and embedded looks OK
   - [ ] Can point the app to a custom HTML template
   - [ ] Static content picked up instead of hardcoded (this should be a quick circlet thing but I'll do it later)
