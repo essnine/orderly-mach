@@ -31,3 +31,4 @@ So far in, here's what's working and what's not. This is not an exhaustive list 
   - [ ] compositional CSS and interactive elements
   - [ ] or HTMX
 - [ ] ??? (something will occur to me in a dream)
+- [ ] I need to document the env vars in use here

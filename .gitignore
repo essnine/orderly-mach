@@ -1,2 +1,5 @@
 jpm_tree/
 bin/
+
+.env
+.envrc
