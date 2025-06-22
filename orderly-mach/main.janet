@@ -70,4 +70,4 @@
       pages    # table of routes
       circlet/router                # router middleware, accepts table of routes
       circlet/logger)               # logger middleware, accepts next middleware to be called within
-    8000))
+    8000 "0.0.0.0"))

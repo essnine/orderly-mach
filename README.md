@@ -32,3 +32,8 @@ So far in, here's what's working and what's not. This is not an exhaustive list 
   - [ ] or HTMX
 - [ ] ??? (something will occur to me in a dream)
 - [ ] I need to document the env vars in use here
+
+
+#### Notes on the code, Janet, JPM stuff:
+- Installing sqlite3 is a little complicated - I found this flag to set before building deps, like so: `PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 jpm -l deps`
+- Most packages are listed in the JPM package repo so I can just pass a string instead of a table - I need the latter in case I want to pass a specific version
