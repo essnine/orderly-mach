@@ -21,10 +21,10 @@ So far in, here's what's working and what's not. This is not an exhaustive list 
 - [x] favicon and font resources are working
 - [ ] page styling works as expected
   - [x] markdown converted to HTML and embedded looks OK
-  - [ ] can point the app to a custom HTML template
-  - [ ] static content picked up instead of hardcoded (this should be a quick circlet thing but I'll do it later)
+  - [x] can point the app to a custom HTML template
+  - [x] static content picked up instead of hardcoded (this should be a quick circlet thing but I'll do it later)
   - [ ] ??? (something will occur to me in a dream)
-- [ ] images or links in markdown are handled
+- [x] images or links in markdown are handled
 - [ ] loads everything into sqlite
 - [ ] emits binaries containing full site
 - [ ] composing HTML using the html module in the stdlib instead of the custom template

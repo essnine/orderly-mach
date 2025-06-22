@@ -48,13 +48,12 @@
         (def expanded-filepath (string/join @[expanded-posts-path filepath] "/"))
         (put files (trim-file-name-for-path filename) (string (slurp expanded-filepath))))
       (print "Skipping file: " filepath)))
-
   files)
 
 (defn prepare-pages [posts-path]
   (def file-text-table (load-files posts-path))
   (def file-html-table (convert-mdn-to-html file-text-table))
-  (put file-html-table :default {:kind :static :root "."})
+  (put file-html-table :default (file-html-table "/home"))
   (put file-html-table "/favicon.ico" {:kind :file :file "./orderly-mach/templates/favicon.png" :mime "image/png"})
   (put file-html-table "/8BITWONDERNominal.woff2" {:kind :file :file "./orderly-mach/templates/8BITWONDERNominal.woff2" :mime "application/octet-stream"})
   (pp (keys file-html-table))
@@ -62,10 +61,13 @@
 
 (def posts-path (get (os/environ) "POSTSPATH" "~/posts"))
 (def default-page (get (os/environ) "DEFAULTPAGENAME" "site-home.md"))
+(def pages (prepare-pages posts-path))
 
-(circlet/server
-  (->
-    (prepare-pages posts-path)    # table of routes
-    circlet/router                # router middleware, accepts table of routes
-    circlet/logger)               # logger middleware, accepts next middleware to be called within
-  8000)
+(defn main [& args]
+  (pp "running server now...")
+  (circlet/server
+    (->
+      pages    # table of routes
+      circlet/router                # router middleware, accepts table of routes
+      circlet/logger)               # logger middleware, accepts next middleware to be called within
+    8000))

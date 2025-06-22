@@ -1,3 +1,3 @@
-(use ../orderly-mach/init)
+(use ../orderly-mach/main)
 
 (assert (= (hello) "Hello!"))

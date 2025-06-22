@@ -1,5 +1,11 @@
 jpm_tree/
 bin/
+build/
 
 .env
 .envrc
+
+*.sublime-project
+*.sublime-workspace
+
+.DS_Store
