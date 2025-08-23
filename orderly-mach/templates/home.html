@@ -85,10 +85,6 @@
             }
         }
 
-        // alright so I've forgotten a major amount of the work I did here
-        // so, I might try to document it once I go through all the code
-        // (and get it working too, obvsly)
-
         function checkStorageForConfig() {
             if (typeof (Storage) !== "undefined") {
                 // Code for checking localStorage/sessionStorage availability.
@@ -223,6 +219,7 @@
             max-width: 80ch;
             min-width: 40ch;
             min-height: 40ch;
+            margin: 2em 0;
         }
 
         #contentDiv:hover {
@@ -466,7 +463,7 @@
 <header class="header" id="header">
     <div class="flex-container headerMaster headerDarkMode" id="headerMaster">
         <a href="/">Home</a>
-        <a href="/pages/">Posts</a>
+        <a href="/pages">Posts</a>
     </div>
 </header>
 

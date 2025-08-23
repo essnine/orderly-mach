@@ -26,6 +26,10 @@
     (pp pair)
     (put html-table (pair 0)
          {:headers {:content-type "text/html"}
+          :body (string/replace "{{body_content}}" (markable/markdown->html (pair 1)) base-html-template)})
+    # also handling trailing slashes because why not
+    (put html-table (string (pair 0) "/")
+         {:headers {:content-type "text/html"}
           :body (string/replace "{{body_content}}" (markable/markdown->html (pair 1)) base-html-template)}))
   html-table)
 
@@ -54,9 +58,12 @@
   (def file-text-table (load-files posts-path))
   (def file-html-table (convert-mdn-to-html file-text-table))
   (put file-html-table :default (file-html-table "/home"))
+
   (put file-html-table "/favicon.ico" {:kind :file :file "./orderly-mach/templates/favicon.png" :mime "image/png"})
   (put file-html-table "/8BITWONDERNominal.woff2" {:kind :file :file "./orderly-mach/templates/8BITWONDERNominal.woff2" :mime "application/octet-stream"})
+
   (pp (keys file-html-table))
+
   file-html-table)
 
 (def posts-path (get (os/environ) "POSTSPATH" "~/posts"))
