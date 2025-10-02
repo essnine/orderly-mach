@@ -9,4 +9,6 @@ build/
 *.sublime-workspace
 *.code-workspace
 
+*.db
+
 .DS_Store
