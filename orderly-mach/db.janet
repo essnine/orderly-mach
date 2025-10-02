@@ -5,7 +5,6 @@
 	(def db (sql/open db-path))
 	db)
 
-
 (defn get-posts-from-db [db]
 	(def posts (sql/eval db "SELECT * FROM POSTS;"))
 	posts)

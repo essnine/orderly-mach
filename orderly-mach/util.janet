@@ -10,6 +10,13 @@
     (print "Loading sidebar elements...")
     (def conn (db/get-database-connection "site.sqlite.db"))
     (def post-list (db/get-post-list-for-linking conn))
-    (def sidebar-elems @[])
-    (each post post-list (array/push sidebar-elems @{:id (post :id) :title (post :title) :page-path (post "path")}))
+    (def sidebar-elems @{})
+    (pp post-list)
+    (each post post-list (do 
+        (def post-row (table 
+            :id (post :id)
+            :title (post :title)
+            :path (post :path)
+            :created-at (post :created)))
+        (put sidebar-elems (post :path) post-row)))
     sidebar-elems)
