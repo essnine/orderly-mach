@@ -23,13 +23,12 @@ So far in, here's what's working and what's not. This is not an exhaustive list 
   - [x] markdown converted to HTML and embedded looks OK
   - [x] can point the app to a custom HTML template
   - [x] static content picked up instead of hardcoded (this should be a quick circlet thing but I'll do it later)
-  - [ ] ??? (something will occur to me in a dream)
 - [x] images or links in markdown are handled
 - [ ] loads everything into sqlite
-- [ ] emits binaries containing full site
+- [ ] ~~emits binaries containing full site~~ not doing this for now because I'm daily driving a mac and I don't want to bother with the binaries stuff
 - [ ] composing HTML using the html module in the stdlib instead of the custom template
   - [ ] compositional CSS and interactive elements
-  - [ ] or HTMX
+  - [ ] or HTMX ???
 - [ ] ??? (something will occur to me in a dream)
 - [ ] I need to document the env vars in use here
 

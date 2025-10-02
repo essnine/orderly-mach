@@ -2,6 +2,8 @@
 (import http) # http client lib from joy framework
 (import markable)
 (import spork/path :as path)
+(import ./orderly-mach/db :as db)
+(import ./orderly-mach/util :as util)
 
 
 (defn get-filename [filepath]
@@ -55,8 +57,7 @@
   files)
 
 (defn prepare-pages [posts-path]
-  (def file-text-table (load-files posts-path))
-  (def file-html-table (convert-mdn-to-html file-text-table))
+  (def file-html-table (convert-mdn-to-html (load-files posts-path)))
   (put file-html-table :default (file-html-table "/home"))
 
   (put file-html-table "/favicon.ico" {:kind :file :file "./orderly-mach/templates/favicon.png" :mime "image/png"})
