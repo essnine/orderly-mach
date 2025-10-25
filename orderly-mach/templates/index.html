@@ -8,53 +8,72 @@
         <style>
             body {
                 font-family: Arial, sans-serif;
+                display: block;
+                min-height: 90%;
+                margin: auto;
             }
             .container {
-                display: flex;
+                display: block;
                 flex-direction: column;
-                align-items: flex-start;
-                justify-content: center;
             }
             .links {
-                display: flex;
-                max-width: 800px;
-                align-self: center;
+                display: block;
+                width: 100%;
+                text-align: center;
+                position: fixed;
+                border-bottom: 1px solid black;
+                top: 0%;
+                background: white;
             }
             .content {
-                margin: 0 2em;
-                max-width: 800px;
-                align-self: center;
+                display: block;
+                padding: 3rem 1rem 2rem 1rem;
+                min-width: 22rem;
+                max-width: 80%;
+                text-align: justify;
+                margin: auto;
             }
             .header {
-                display: flex;
+                display: block;
                 align-self: center;
             }
             .header-item {
-                display: flex;
-                padding: 0 2em;
+                display: inline;
+                padding: 0 2rem 0 0;
             }
-            .rc-scout {
-                position: absolute;
-                bottom: 1%;
-                right: 1%;
+            .page-footer {
+                border-top: 1px black;
+                background-color: white;
+                width: 100%;
+                display: block;
+                position: fixed;
+                bottom: 0%;
+                text-align: center;
+                padding: 0.5rem;
+                border-top-style: solid;
+            }
+            :is(h1, h2, h3, h4, h5, h6) {
+                text-align: center;
             }
         </style>
     </head>
     <body>
         <div class="container">
-            <div class="links">
+            <nav class="links">
                 <!-- Links Section -->
                 <ul class="header">
                    <li class="header-item"><a href="/home">Home</a></li>
-                   <li class="header-item"><a href="/posts">Posts</a></li>
+                   <li class="header-item"><a href="/pages">Pages</a></li>
                    <li class="header-item"><a href="/about">About</a></li>
                 </ul>
-            </div>
+            </nav>
             <div class="content">
                 <!-- Content Section -->
                 {{ content }}
             </div>
         </div>
-        <div class="rc-scout"></div>
+        <footer class="page-footer">
+            <div class="rc-scout">Loading...</div>
+        </footer>
     </body>
 </html>

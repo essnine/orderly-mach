@@ -31,7 +31,7 @@
     (string/join [
         "<li href='"
         link
-        "' target='_blank'>"
+        "' >"
         text
         "</li>"]))
 
