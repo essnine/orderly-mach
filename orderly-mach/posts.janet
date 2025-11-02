@@ -8,20 +8,11 @@
   (def base-html-template (string (slurp "./orderly-mach/templates/index.html")))
   (string/replace "{{ content }}" (mk/markdown->html md-text) base-html-template))
 
-# (defn render-page-with-vars [md-text links]
-#   (def base-html-template (string (slurp "./orderly-mach/templates/index.html")))
-#   (def md-links [])
-#   (each link links (array/push md-links (li link)))
-# )
-  
-
-
 (defn add-links-to-html [links html-body]
   (string/replace
     "{{ links }}" (
       pages/generate-html-sidebar-list
-      links) html-body)
-  )
+      links) html-body))
 
 (defn convert-mdn-to-html [mdn-table]
   (var html-table @{})
@@ -31,7 +22,6 @@
          {:headers {:content-type "text/html"}
           :body (add-content-to-html (pair 1))}))
   html-table)
-
 
 (defn load-files
   "Load file text into memory" [posts-path]
@@ -55,7 +45,6 @@
 (defn prepare-pages [posts-path]
   (def file-html-table (convert-mdn-to-html (load-files posts-path)))
   (put file-html-table :default (file-html-table "/home"))
-
   (put file-html-table
     "/favicon.ico" {
       :kind :file

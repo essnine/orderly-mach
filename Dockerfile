@@ -9,7 +9,8 @@ COPY . .
 RUN apk add janet git musl
 
 RUN git clone https://github.com/janet-lang/jpm jpm && cd jpm && PREFIX=/usr janet bootstrap.janet
-RUN PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 jpm -l deps && jpm -l build && chmod +x build/orderly-mach
+RUN PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 jpm -l deps
+RUN jpm -l build && chmod +x build/orderly-mach
 
 EXPOSE 80
 
