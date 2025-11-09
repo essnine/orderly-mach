@@ -17,6 +17,6 @@ EXPOSE 80
 
 ENTRYPOINT [ "jpm", "-l", "janet", "main.janet" ]
 
-ENV POSTSPATH=/root/POSTS
+ENV POSTSPATH=/root/posts
 
 CMD [ "jpm", "-l", "janet", "main.janet" ]
