@@ -4,7 +4,7 @@ RUN mkdir /root/app
 
 WORKDIR /root/app
 
-RUN mkdir /root/POSTS
+RUN mkdir /root/posts
 
 COPY . .
 
@@ -18,6 +18,6 @@ EXPOSE 80
 
 ENTRYPOINT [ ]
 
-ENV POSTSPATH /root/POSTS
+ENV POSTSPATH=/root/POSTS
 
 CMD [ "build/orderly-mach" ]
