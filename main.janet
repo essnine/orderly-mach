@@ -1,5 +1,4 @@
 (import circlet)
-(import http) # http client lib from joy framework
 (import markable)
 (import spork/path :as path)
 (import ./orderly-mach/db :as db)
