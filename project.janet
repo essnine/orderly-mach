@@ -10,5 +10,5 @@
 
 (declare-executable
   :name "orderly-mach"
-  :entry "orderly-mach/main.janet"
+  :entry "main.janet"
   :install false)
