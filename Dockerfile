@@ -4,6 +4,8 @@ RUN mkdir /root/app
 
 WORKDIR /root/app
 
+RUN mkdir /root/POSTS
+
 COPY . .
 
 RUN apk add make gcc janet-dev git musl-dev
@@ -15,5 +17,7 @@ RUN jpm -l build && chmod +x build/orderly-mach
 EXPOSE 80
 
 ENTRYPOINT [ ]
+
+ENV POSTSPATH /root/POSTS
 
 CMD [ "build/orderly-mach" ]
