@@ -6,7 +6,6 @@
 (import ./orderly-mach/posts :as posts)
 
 
-
 (def posts-path (get (os/environ) "POSTSPATH" "~/posts"))
 (def default-page (get (os/environ) "DEFAULTPAGENAME" "site-home.md"))
 (def pages (posts/prepare-pages posts-path))
@@ -15,7 +14,7 @@
   (pp "running server now...")
   (circlet/server
     (->
-      pages    # table of routes
+      pages                         # table of routes
       circlet/router                # router middleware, accepts table of routes
       circlet/logger)               # logger middleware, accepts next middleware to be called within
     8000 "0.0.0.0"))

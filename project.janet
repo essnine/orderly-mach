@@ -1,7 +1,7 @@
 (declare-project
   :name "orderly-mach"
   :description ```website stuff ```
-  :version "0.0.0"
+  :version "0.0.1"
   :dependencies [
     "https://github.com/pyrmont/markable"
     "https://github.com/janet-lang/spork.git"
