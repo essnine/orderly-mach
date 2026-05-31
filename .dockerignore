@@ -4,3 +4,5 @@ jpm_tree/
 *.code-workspace
 *.sublime-workspace
 *.sublime-project
+.DS_Store/
+*.sqlite.db

@@ -1,0 +1,2 @@
+CREATE TABLE logs (id INTEGER PRIMARY KEY, ts INTEGER, log TEXT, ip TEXT, headers TEXT);
+CREATE TABLE posts (id INTEGER PRIMARY KEY, ts INTEGER, text_html TEXT, )

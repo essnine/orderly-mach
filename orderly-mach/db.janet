@@ -1,5 +1,11 @@
 (import sqlite3 :as sql)
 
+(def logs-table-spec @{
+	:name "logs"
+	:columns @{:id :INTEGER :time :INTEGER :path :TEXT :ip :TEXT :headers :TEXT}
+	:command "CREATE TABLE logs (id INTEGER PRIMARY KEY, time INTEGER, path TEXT, ip TEXT, headers TEXT)"})
+
+
 (defn get-database-connection [db-path]
 	(print "db path is " db-path)
 	(def db (sql/open db-path))
@@ -18,3 +24,6 @@
 	(def post-list (sql/eval db "SELECT id, title, created, path, tags from POSTS where POSTS.active=1"))
 	(pp post-list)
 	post-list)
+
+(defn logs-table-setup [db]
+	(sql/eval (logs-table-spec :command)))

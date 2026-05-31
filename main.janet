@@ -5,6 +5,7 @@
 (import ./orderly-mach/util :as util)
 (import ./orderly-mach/posts :as posts)
 
+(circlet/logger "Starting up...")
 
 (def posts-path (get (os/environ) "POSTSPATH" "~/posts"))
 (def default-page (get (os/environ) "DEFAULTPAGENAME" "site-home.md"))
