@@ -12,3 +12,5 @@ build/
 *.db
 
 .DS_Store
+
+/pages/
