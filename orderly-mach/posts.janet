@@ -27,18 +27,13 @@
   "Load file text into memory" [posts-path]
   (var files @{})
   (def expanded-posts-path (util/expand-tilde posts-path))
-  (def files-in-path (os/dir expanded-posts-path))
-  (pp files-in-path)
-  (loop [filepath :in files-in-path]
+  (loop [filepath :in (os/dir expanded-posts-path)]
     (print "processing filepath: " filepath)
     (if (= (path/ext filepath) ".md")
       (do 
-        (var filename (util/get-filename filepath))
-        (def expanded-filepath 
-          (string/join @[expanded-posts-path filepath] "/"))
         (put files 
-          (util/trim-file-name-for-path filename) 
-          (string (slurp expanded-filepath))))
+          (util/trim-file-name-for-path (util/get-filename filepath)) 
+          (string (slurp (string/join @[expanded-posts-path filepath] "/")))))
       (print "Skipping file: " filepath)))
   files)
 
